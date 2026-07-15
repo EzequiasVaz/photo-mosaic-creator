@@ -1,0 +1,30 @@
+.timeline {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.timeline h3 {
+  margin: 0;
+}
+
+.event {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 0.5rem;
+  padding: 0.45rem;
+  border-radius: 10px;
+  border: 1px solid #ececec;
+}
+
+.event img {
+  width: 52px;
+  height: 52px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.event p {
+  margin: 0.15rem 0;
+  font-size: 0.7rem;
+  color: #666;
+}

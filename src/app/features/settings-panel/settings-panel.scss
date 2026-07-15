@@ -1,0 +1,38 @@
+.settings {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.settings h3,
+.settings h4 {
+  margin: 0 0 0.2rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+label {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: #555;
+}
+
+.color-fields {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.color-fields label {
+  margin-top: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+input[type='color'] {
+  width: 100%;
+  height: 32px;
+  border: 0;
+  background: transparent;
+}

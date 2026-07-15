@@ -1,0 +1,40 @@
+<section class="upload-panel">
+  <header>
+    <h3>Upload</h3>
+    <p>JPG, JPEG, PNG e WEBP</p>
+  </header>
+
+  <input #fileInput hidden type="file" multiple accept=".jpg,.jpeg,.png,.webp" (change)="onFilesPicked($event)" />
+  <input
+    #folderInput
+    hidden
+    type="file"
+    webkitdirectory
+    directory
+    multiple
+    accept=".jpg,.jpeg,.png,.webp"
+    (change)="onFilesPicked($event)"
+  />
+
+  <div class="dropzone" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+    <mat-icon>cloud_upload</mat-icon>
+    <span>Arraste imagens ou pasta</span>
+  </div>
+
+  <div class="actions">
+    <button mat-stroked-button type="button" (click)="openFiles()">
+      <mat-icon>photo_library</mat-icon>
+      Selecionar imagens
+    </button>
+    <button mat-stroked-button type="button" (click)="openFolder()">
+      <mat-icon>folder_open</mat-icon>
+      Selecionar pasta
+    </button>
+    <button mat-stroked-button type="button" (click)="openFolderSystemAccess()" [disabled]="!supportsDirectoryPicker">
+      <mat-icon>drive_folder_upload</mat-icon>
+      Pasta (File System API)
+    </button>
+  </div>
+
+  <p class="count">{{ photos().length }} fotos carregadas</p>
+</section>

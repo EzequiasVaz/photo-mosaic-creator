@@ -1,0 +1,19 @@
+@if (settings().showTimeline) {
+  <section class="timeline">
+    <h3>Timeline</h3>
+
+    @for (photo of photos(); track photo.id) {
+      <article class="event">
+        <img [src]="photo.thumbnailSrc" [alt]="photo.name" loading="lazy" />
+        <div>
+          <strong>{{ photo.name }}</strong>
+          <p>{{ photo.createdAt | date: 'dd/MM/yyyy HH:mm' }}</p>
+          <button mat-button type="button" (click)="makeMain(photo.id)">
+            <mat-icon>star</mat-icon>
+            Principal
+          </button>
+        </div>
+      </article>
+    }
+  </section>
+}

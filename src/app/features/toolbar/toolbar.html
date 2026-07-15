@@ -1,0 +1,32 @@
+<mat-toolbar class="toolbar">
+  <div class="brand">Photo Mosaic Creator</div>
+
+  <span class="spacer"></span>
+
+  <button mat-stroked-button type="button" (click)="onUpload.emit()">
+    <mat-icon>upload</mat-icon>
+    Upload
+  </button>
+
+  <button mat-stroked-button type="button" (click)="onAutoArrange.emit()">
+    <mat-icon>auto_fix_high</mat-icon>
+    Organizar automaticamente
+  </button>
+
+  <button mat-icon-button type="button" [disabled]="!canUndo()" (click)="onUndo.emit()" aria-label="Undo">
+    <mat-icon>undo</mat-icon>
+  </button>
+
+  <button mat-icon-button type="button" [disabled]="!canRedo()" (click)="onRedo.emit()" aria-label="Redo">
+    <mat-icon>redo</mat-icon>
+  </button>
+
+  <button mat-icon-button type="button" (click)="onFullscreen.emit()" aria-label="Fullscreen">
+    <mat-icon>fullscreen</mat-icon>
+  </button>
+
+  <button mat-flat-button color="primary" type="button" (click)="onExport.emit()">
+    <mat-icon>ios_share</mat-icon>
+    Exportar
+  </button>
+</mat-toolbar>

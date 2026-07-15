@@ -1,0 +1,36 @@
+<section class="grid" #grid>
+  @for (photo of photos(); track trackById($index, photo)) {
+    <article
+      class="photo-card"
+      [class.selected]="photo.id === selectedPhotoId()"
+      [class.main]="photo.isMain"
+      (click)="select(photo.id)"
+    >
+      <img [src]="photo.thumbnailSrc" [alt]="photo.name" loading="lazy" />
+
+      <div class="badges">
+        @if (photo.isMain) {
+          <span class="badge">Principal</span>
+        }
+        @if (photo.favorite) {
+          <span class="badge favorite">Favorita</span>
+        }
+      </div>
+
+      <div class="actions">
+        <button mat-icon-button type="button" (click)="setMain(photo.id); $event.stopPropagation()">
+          <mat-icon>star</mat-icon>
+        </button>
+        <button mat-icon-button type="button" (click)="toggleFavorite(photo.id); $event.stopPropagation()">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button type="button" (click)="duplicate(photo.id); $event.stopPropagation()">
+          <mat-icon>content_copy</mat-icon>
+        </button>
+        <button mat-icon-button type="button" (click)="remove(photo.id); $event.stopPropagation()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </article>
+  }
+</section>
