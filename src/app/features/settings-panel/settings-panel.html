@@ -1,0 +1,97 @@
+<section class="settings">
+  <h3>Configurações</h3>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Layout</mat-label>
+    <mat-select [ngModel]="settings().layout" (ngModelChange)="setLayout($event)">
+      @for (layout of layouts; track layout.value) {
+        <mat-option [value]="layout.value">{{ layout.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Tema</mat-label>
+    <mat-select [ngModel]="settings().theme" (ngModelChange)="setTheme($event)">
+      @for (theme of themes; track theme.value) {
+        <mat-option [value]="theme.value">{{ theme.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <label>Espaçamento</label>
+  <mat-slider min="0" max="36" step="1" discrete>
+    <input matSliderThumb [ngModel]="settings().spacing" (ngModelChange)="setNumber('spacing', $event)" />
+  </mat-slider>
+
+  <label>Borda</label>
+  <mat-slider min="0" max="16" step="1" discrete>
+    <input matSliderThumb [ngModel]="settings().borderSize" (ngModelChange)="setNumber('borderSize', $event)" />
+  </mat-slider>
+
+  <label>Raio da borda</label>
+  <mat-slider min="0" max="48" step="1" discrete>
+    <input matSliderThumb [ngModel]="settings().borderRadius" (ngModelChange)="setNumber('borderRadius', $event)" />
+  </mat-slider>
+
+  <label>Sombra</label>
+  <mat-slider min="0" max="36" step="1" discrete>
+    <input matSliderThumb [ngModel]="settings().shadow" (ngModelChange)="setNumber('shadow', $event)" />
+  </mat-slider>
+
+  <label>Tamanho foto principal (%)</label>
+  <mat-slider min="20" max="80" step="1" discrete>
+    <input matSliderThumb [ngModel]="settings().mainPhotoSize" (ngModelChange)="setNumber('mainPhotoSize', $event)" />
+  </mat-slider>
+
+  <mat-slide-toggle [ngModel]="settings().roundedCorners" (ngModelChange)="setBoolean('roundedCorners', $event)">
+    Cantos arredondados
+  </mat-slide-toggle>
+
+  <div class="color-fields">
+    <label>Fundo <input type="color" [ngModel]="settings().backgroundColor" (ngModelChange)="setColor('backgroundColor', $event)" /></label>
+    <label>Borda <input type="color" [ngModel]="settings().borderColor" (ngModelChange)="setColor('borderColor', $event)" /></label>
+    <label>Texto <input type="color" [ngModel]="settings().text.color" (ngModelChange)="setColor('text.color', $event)" /></label>
+  </div>
+
+  <h4>Texto</h4>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Título</mat-label>
+    <input matInput [ngModel]="settings().text.title" (ngModelChange)="setTextString('title', $event)" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Subtítulo</mat-label>
+    <input matInput [ngModel]="settings().text.subtitle" (ngModelChange)="setTextString('subtitle', $event)" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Fonte</mat-label>
+    <input matInput [ngModel]="settings().text.fontFamily" (ngModelChange)="setTextString('fontFamily', $event)" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Alinhamento</mat-label>
+    <mat-select [ngModel]="settings().text.align" (ngModelChange)="setTextAlign($event)">
+      <mat-option value="left">Esquerda</mat-option>
+      <mat-option value="center">Centro</mat-option>
+      <mat-option value="right">Direita</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <label>Tamanho da fonte</label>
+  <mat-slider min="12" max="64" step="1" discrete>
+    <input matSliderThumb [ngModel]="settings().text.size" (ngModelChange)="setTextNumber('size', $event)" />
+  </mat-slider>
+
+  <label>Posição horizontal (%)</label>
+  <mat-slider min="5" max="95" step="1" discrete>
+    <input matSliderThumb [ngModel]="settings().text.x" (ngModelChange)="setTextNumber('x', $event)" />
+  </mat-slider>
+
+  <label>Posição vertical (%)</label>
+  <mat-slider min="4" max="85" step="1" discrete>
+    <input matSliderThumb [ngModel]="settings().text.y" (ngModelChange)="setTextNumber('y', $event)" />
+  </mat-slider>
+</section>

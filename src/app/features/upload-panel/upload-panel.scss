@@ -1,0 +1,37 @@
+.upload-panel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+header h3 {
+  margin: 0;
+}
+
+header p {
+  margin: 0.15rem 0 0;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.dropzone {
+  border: 1px dashed #bebebe;
+  border-radius: 12px;
+  padding: 1rem;
+  min-height: 88px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #666;
+  gap: 0.4rem;
+}
+
+.actions {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.count {
+  margin: 0;
+  color: #666;
+  font-size: 0.8rem;
+}

@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Exportação profissional</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Formato</mat-label>
+    <mat-select [ngModel]="config().format" (ngModelChange)="setFormat($event)">
+      <mat-option value="png">PNG</mat-option>
+      <mat-option value="jpeg">JPEG</mat-option>
+      <mat-option value="pdf">PDF</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Resolução</mat-label>
+    <mat-select
+      [ngModel]="config().keepOriginalResolution ? 'original' : config().width + 'x' + config().height"
+      (ngModelChange)="setSize($event)"
+    >
+      @for (size of sizes; track size.width) {
+        <mat-option [value]="size.width + 'x' + size.height">{{ size.label }}</mat-option>
+      }
+      <mat-option value="original">Manter resolução original</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="close()">Cancelar</button>
+  <button mat-flat-button color="primary" type="button" [disabled]="busy()" (click)="export()">
+    {{ busy() ? 'Exportando...' : 'Exportar' }}
+  </button>
+</mat-dialog-actions>

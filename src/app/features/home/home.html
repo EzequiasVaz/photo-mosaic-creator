@@ -1,0 +1,38 @@
+<app-toolbar
+  [canUndo]="canUndo()"
+  [canRedo]="canRedo()"
+  (onUpload)="triggerUpload()"
+  (onAutoArrange)="autoArrange()"
+  (onUndo)="undo()"
+  (onRedo)="redo()"
+  (onExport)="openExportDialog()"
+  (onFullscreen)="toggleFullscreen()"
+/>
+
+<main class="layout">
+  <aside class="panel">
+    <mat-card>
+      <mat-card-content>
+        <app-upload-panel />
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content>
+        <app-settings-panel />
+      </mat-card-content>
+    </mat-card>
+  </aside>
+
+  <section class="editor">
+    <app-mosaic-editor />
+  </section>
+
+  <aside class="panel">
+    <mat-card>
+      <mat-card-content>
+        <app-timeline-panel />
+      </mat-card-content>
+    </mat-card>
+  </aside>
+</main>

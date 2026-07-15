@@ -1,0 +1,105 @@
+<section class="editor-wrapper">
+  <section
+    id="mosaic-canvas"
+    class="mosaic"
+    [class]="'mosaic layout-' + settings().layout"
+    [style.background]="settings().backgroundColor"
+    [style.gap.px]="settings().spacing"
+  >
+    <div class="text-overlay" [style.left.%]="settings().text.x" [style.top.%]="settings().text.y" [style.text-align]="settings().text.align">
+      <h2
+        [style.font-family]="settings().text.fontFamily"
+        [style.color]="textColor()"
+        [style.font-size.px]="settings().text.size"
+      >
+        {{ settings().text.title }}
+      </h2>
+      <p [style.font-family]="settings().text.fontFamily" [style.color]="textColor()">{{ settings().text.subtitle }}</p>
+    </div>
+
+    @if (mainPhoto()) {
+      <figure class="main-photo" [style.width.%]="settings().mainPhotoSize">
+        <img
+          [src]="mainPhoto()!.src"
+          [alt]="mainPhoto()!.name"
+          [style.border-width.px]="settings().borderSize"
+          [style.border-color]="settings().borderColor"
+          [style.border-radius.px]="settings().roundedCorners ? settings().borderRadius : 0"
+          [style.box-shadow]="'0 12px ' + settings().shadow + 'px rgba(0,0,0,0.14)'"
+          [style.transform]="transformStyle(mainPhoto()!.id)"
+          [class]="aspectClass(mainPhoto()!.id)"
+        />
+      </figure>
+    }
+
+    <section class="side-photos">
+      @for (photo of sidePhotos(); track photo.id) {
+        <figure class="tile" [class.polaroid]="settings().layout === 'polaroid'">
+          <img
+            [src]="photo.src"
+            [alt]="photo.name"
+            [style.border-width.px]="settings().borderSize"
+            [style.border-color]="settings().borderColor"
+            [style.border-radius.px]="settings().roundedCorners ? settings().borderRadius : 0"
+            [style.box-shadow]="'0 8px ' + settings().shadow + 'px rgba(0,0,0,0.12)'"
+            [style.transform]="transformStyle(photo.id)"
+            [class]="aspectClass(photo.id)"
+            loading="lazy"
+          />
+        </figure>
+      }
+    </section>
+  </section>
+
+  <section class="controls">
+    <h3>Editor da foto selecionada</h3>
+
+    @if (selectedPhoto()) {
+      <div class="row">
+        <span>Zoom</span>
+        <mat-slider min="1" max="3" step="0.01" discrete>
+          <input matSliderThumb [ngModel]="selectedPhoto()!.transform.zoom" (ngModelChange)="setTransform('zoom', $event)" />
+        </mat-slider>
+      </div>
+
+      <div class="row">
+        <span>Rotação</span>
+        <mat-slider min="-180" max="180" step="1" discrete>
+          <input
+            matSliderThumb
+            [ngModel]="selectedPhoto()!.transform.rotation"
+            (ngModelChange)="setTransform('rotation', $event)"
+          />
+        </mat-slider>
+      </div>
+
+      <div class="row row-buttons">
+        <button mat-stroked-button type="button" (click)="toggleFlip('x')">
+          <mat-icon>flip</mat-icon>
+          Espelhar X
+        </button>
+        <button mat-stroked-button type="button" (click)="toggleFlip('y')">
+          <mat-icon>flip</mat-icon>
+          Espelhar Y
+        </button>
+      </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Proporção</mat-label>
+        <mat-select [ngModel]="selectedPhoto()!.transform.aspectRatio" (ngModelChange)="setAspectRatio($event)">
+          <mat-option value="free">Livre</mat-option>
+          <mat-option value="1:1">1:1</mat-option>
+          <mat-option value="4:5">4:5</mat-option>
+          <mat-option value="16:9">16:9</mat-option>
+        </mat-select>
+      </mat-form-field>
+    } @else {
+      <p>Selecione uma foto para editar.</p>
+    }
+  </section>
+
+  <section>
+    <h3>Grade de fotos</h3>
+    <app-photo-grid />
+  </section>
+</section>

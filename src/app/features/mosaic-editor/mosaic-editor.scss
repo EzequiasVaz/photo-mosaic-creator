@@ -1,0 +1,92 @@
+.editor-wrapper {
+  display: grid;
+  gap: 1rem;
+}
+
+.mosaic {
+  position: relative;
+  border-radius: 16px;
+  padding: 1.5rem;
+  min-height: 540px;
+  overflow: hidden;
+}
+
+.text-overlay {
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.text-overlay h2,
+.text-overlay p {
+  margin: 0;
+}
+
+.main-photo {
+  margin: 4rem auto 1rem;
+}
+
+.main-photo img,
+.tile img {
+  width: 100%;
+  object-fit: cover;
+  border-style: solid;
+  transition: transform 0.22s ease;
+  will-change: transform;
+}
+
+.side-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: inherit;
+}
+
+.tile.polaroid img {
+  transform: rotate(-2deg);
+}
+
+.layout-grid .main-photo,
+.layout-timeline .main-photo {
+  display: none;
+}
+
+.layout-grid .side-photos {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.layout-elegant {
+  padding: 3rem;
+}
+
+.layout-frame .main-photo {
+  width: 60%;
+}
+
+.controls {
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  padding: 0.75rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.row-buttons {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ratio-1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.ratio-4-5 {
+  aspect-ratio: 4 / 5;
+}
+
+.ratio-16-9 {
+  aspect-ratio: 16 / 9;
+}

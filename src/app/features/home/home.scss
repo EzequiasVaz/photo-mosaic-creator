@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 300px) 1fr minmax(220px, 280px);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.panel {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.editor {
+  min-width: 0;
+}
+
+mat-card {
+  border-radius: 16px;
+  box-shadow: none;
+  border: 1px solid #ececec;
+}
+
+@media (max-width: 1200px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    grid-template-columns: 1fr;
+  }
+}
